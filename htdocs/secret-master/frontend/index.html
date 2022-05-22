@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+        <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="panel-login">
+        <h1 align="center">login</h1>
+        <table width="304" border="0" align="center" bgcolor="">
+            <tr>
+                <td width="71" height="45">
+                    <label>Email</label>
+                </td>
+                <td width="5">:</td>
+                <td width="150">
+                    <input type="text" name="email" id="email" class="form-control" placeholder="name@example.com" autofocus required />
+                </td>
+            </tr>
+            <tr>
+                <td width="71" height="45">
+                    <label>Password</label>
+                </td>
+                <td width="5">:</td>
+                <td width="150">
+                    <input type="password" name="password" id="password">
+                </td>
+            </tr>
+            <tr>
+                <td align="middle" colspan="3">
+                    <button id="tombol-login" class="tombol-login">Login</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="panel2">
+        <h2>Profile</h2>
+        <p>nama: <span id="label-nama"></span></p> 
+        <p>email: <span id="label-email"></span></p>
+
+        <h2>Cek Provinsi</h2>
+        <div>masukkan id provinsi</div>
+        <input type="text" id="provinsi">
+        <p>nama: <span id="nama"></span></p>
+        <button type="button" id="btnpProvinsi">provinsi</button>
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+            var token = "";
+            $("#tombol-login").click(function(){
+                var email=$("#email").val();
+                var password=$("#password").val();
+                
+                $.ajax({
+                    'url': 'http://127.0.0.1:8000/api/login',
+                    'method': 'POST',
+                    'data': {
+                        'email': email,
+                        'password': password,
+                    },
+                    'complete': function(result){
+                        console.log(result);
+                        if(result.status == 200){
+                            var response = result.responseJSON;
+                            token = response.access_token;
+                            $("#panel-login").hide();
+                            $("#panel2").show();
+                            getProfile(token);
+                        }else{
+                            alert("Periksa email dan password!");
+                        }
+                    }
+                })
+            })
+
+            $("#btnpProvinsi").click(function(){
+                var id_provinsi = $("#provinsi").val();
+                $.ajax({
+                    'url': 'http://127.0.0.1:8000/api/getprovinsi',
+                    'method': 'POST',
+                    "headers": {
+                        "Authorization": "Bearer " + token
+                    },
+                    'data': {
+                        'id': id_provinsi,
+                    },
+                    'complete': function(result){
+                        if(result.status == 200){
+                            var response = result.responseJSON;
+                            $("#nama").html(response[0].nama);
+                        }
+                    }
+                })
+            })
+
+        })
+
+        function getProfile(token){
+            $.ajax({
+                'url': 'http://127.0.0.1:8000/api/profile',
+                "headers": {
+                    "Authorization": "Bearer " + token
+                },
+                'method': 'GET',
+                'complete': function(result){
+                    console.log(result);
+                    if(result.status == 200){
+                        var response = result.responseJSON;
+                        $("#label-nama") .html(response.name);
+                        $("#label-email").html(response.email);
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+</html>

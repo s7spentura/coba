@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hantam Virus</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="img/virus.png">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="game-wrapper">
+		<div id="game-intro" class="game-intro">
+			<div class="inner">
+				<img src="img/virus.png">
+				<h1>Hantam <span>Virus</span></h1>
+				<h3>V 1.0</h3>
+
+				<div class="labelpemain">Nama Pemain</div>
+				<input type="text" value="" id="txtplayername">
+				<button id="start-button" class="btn">Mulai</button>
+
+				<div class="cara-main">
+					<h4>Cara Main:</h4>
+					<ul>
+						<li>Masukkan nama pemain kemudian tekan mulai</li>
+						<li>Gunakan mouse kemudian tekan tombol yang segaris lurus dengan virus yang akan memasuki area merah untuk membunuh virus, atau gunakan tombol keyboard <strong>[D,F,J,K]</strong></li>
+						<li>Setiap virus yang berhasil dihantam akan menambah skor kamu</li>
+						<li>Setiap ada virus yang berhasil melewati area merah, maka nilai kegagalan bertambah</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="game-status">
+			<div class="time-elapsed"><span>Waktu:</span> <span id="time-elapsed-text">00:00</span></div>
+			<div class="percentage"><span>Skor:</span> <span id="percentage-text">0</span></div>
+			<div class="fail"><span>Gagal:</span> <span id="fail-text">0</span></div>
+
+			<div class="game-control">
+				<h2>Hantam Virus</h2>
+				<p id="lblplayername" class="player-name"></p>
+				<button id="reset-button" class="btn btn-quit">Keluar</button>
+			</div>
+		</div>
+		<div class="piano-board">
+
+			<div class="piano-track-wrapper">
+				<div id="piano-track1" class="piano-track">
+					<!-- <label class="piano-note" for="note1">1</label> -->
+				</div>
+				<div id="piano-track2" class="piano-track"></div>
+				<div id="piano-track3" class="piano-track"></div>
+				<div id="piano-track4" class="piano-track"></div>	
+			</div>
+			<div class="piano-separator"></div>
+			<div class="piano-control">
+				<div class="piano-button-wrapper">
+					<button type="button" name="btn-d" id="btn-d">
+						<img src="img/plane.png">
+						<div class="btn-label">D</div>
+					</button>
+				</div>
+				<div class="piano-button-wrapper">
+					<button type="button" name="btn-f" id="btn-f">
+						<img src="img/plane.png">
+						<div class="btn-label">F</div>
+					</button>
+				</div>
+				<div class="piano-button-wrapper">
+					<button type="button" name="btn-j" id="btn-j">
+						<img src="img/plane.png">
+						<div class="btn-label">J</div>
+					</button>
+				</div>
+				<div class="piano-button-wrapper">
+					<button type="button" name="btn-k" id="btn-k">
+						<img src="img/plane.png">
+						<div class="btn-label">K</div>
+					</button>
+				</div>
+			</div>
+
+			<div id="piano-checkbox" class="piano-checkbox">
+				<!-- <input type="checkbox" id="note1" name="note">-->
+			</div>
+		</div>
+		
+		<div id="game-end" class="game-end">
+			<div class="inner">
+				<img src="img/virus.png">
+				<h1>Game <span>Over</span></h1>
+				
+				<h3>Waktu <span id="end-waktu">00:00</span></h3>
+				<div class="end-keterangan">Skor <span id="end-skor"></span></div>
+				<div class="end-keterangan">Gagal <span id="end-gagal"></span></div>
+
+				<button id="cobalagi-button" class="btn">Coba Lagi</button>
+				<button id="cobalagi-button" class="btn" onclick="window.location.reload();">Keluar</button>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/timer.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

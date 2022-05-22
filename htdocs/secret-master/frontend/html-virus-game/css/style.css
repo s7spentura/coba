@@ -1,0 +1,348 @@
+body{
+	font-family: 'Roboto Mono', monospace;
+	background: rgb(53,80,112);
+	background: radial-gradient(circle, rgba(53,80,112,1) 0%, rgba(109,89,122,1) 69%);
+}
+.game-wrapper{
+	max-width: 960px;
+	margin: 0 auto;
+	height: 100vh;
+	position: relative;
+}
+
+.game-intro{
+	position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: rgb(53,80,112);
+	background: radial-gradient(circle, rgba(53,80,112,1) 0%, rgba(109,89,122,1) 69%);
+	display: flex;
+    align-items: center;
+    flex-direction: row;
+    transition: all .5s ease;
+}
+
+.game-intro.game-started{
+	top: -100%;
+}
+
+.inner{
+	max-width: 460px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.inner h1{
+	font-size: 45px;
+	font-weight: bold;
+	color: #00afb9;
+}
+
+.inner h1 span{
+	color: #f07167;
+}
+
+.inner h3{
+	color: #fff;
+	margin: 5px 0 60px;
+}
+
+.inner input[type="text"]{
+	width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    font-size: 36px;
+    border-bottom: 5px solid #f07167;
+    background: no-repeat;
+    color: #fdfcdc;
+    margin-bottom: 15px;
+}
+
+.inner input[type="text"]:focus{
+	outline: none;
+}
+
+.inner .labelpemain{
+	text-align: left;
+	color: #00afb9;
+	margin-bottom: 10px;
+}
+
+.inner img{
+	animation: rotation 6s infinite linear;
+}
+
+.cara-main{
+	text-align: left;
+	font-size: 14px;
+	margin-top: 15px;
+	color: #fdfcdc;
+}
+
+.cara-main ul{
+	list-style-type: disc;
+	margin-top: 10px;
+}
+
+.game-end{
+	position: fixed;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+	background: rgb(53,80,112);
+	background: radial-gradient(circle, rgba(53,80,112,1) 0%, rgba(109,89,122,1) 69%);
+	transition: all 0.5s ease;
+	display: flex;
+	align-items: center;
+}
+
+.game-end.active{
+	top: 0;
+}
+
+.end-keterangan{
+	font-size: 24px;
+	color: #fdfcdc;
+	font-weight: bold;
+}
+
+.end-keterangan span{
+	color: #f07167;
+}
+
+.game-end .btn{
+	margin-top: 24px;
+	display: inline-block;
+	width: auto;
+	padding-left: 24px;
+	padding-right: 24px;
+	min-width: 132px;
+}
+
+.piano-board{
+	max-width: 50%;
+	margin: 0 auto;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.piano-track-wrapper{
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: row;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+
+.piano-track{
+	flex: 0 0 25%;
+	border-right: 1px solid #fff;
+	position: relative;
+	overflow: hidden;
+}
+
+.piano-track:after{
+	content: " ";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30%;
+	background: rgba(255,0,0,.3);
+}
+
+.piano-track:last-child{
+	border-right: 0;
+}
+
+.piano-separator{
+	flex: 0 0 8px;
+	background: #fed9b7;
+}
+
+.piano-control{
+	flex: 0 0 100px;
+	background: red;
+	display: flex;
+	flex-direction: row;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+}
+
+.piano-button-wrapper{
+	flex: 0 0 25%;
+}
+
+.piano-button-wrapper button{
+	font-family: 'Roboto Mono', monospace;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	border-right:1px solid #fff;
+	font-size: 14px;
+	color: #fff;
+	background: #3e8db1;
+	cursor: pointer;
+	transition: all 0.5s ease;
+	position: relative;
+}
+
+.piano-button-wrapper button img{
+	max-width: 50%;
+}
+
+.piano-button-wrapper button:after{
+	content: " ";
+    position: absolute;
+    bottom: 108px;
+    left: 50%;
+    width: 20px;
+    height: 200px;
+    background: rgb(240,113,103);
+	background: linear-gradient(0deg, rgba(240,113,103,1) 0%, rgba(148,187,233,0) 100%);
+	display: none;
+	margin-left: -10px;
+}
+
+.piano-button-wrapper button:hover{
+	background: #66CFFF;
+}
+
+.piano-button-wrapper button:active:after{
+	display: block;
+}
+
+.piano-note{
+	background: url(../img/virus.png) center center no-repeat transparent;
+	width: 100%;
+	position: absolute;
+	top: -100%;
+	left: 0;
+	height: 100px;
+	cursor: pointer;
+}
+
+.piano-note.active{
+	animation: 6s slide linear;
+}
+
+.piano-note.hit{
+	display: none;
+}
+
+.game-control{
+	margin-top: 64px;
+    background: #fed9b7;
+    padding: 15px;
+    border-radius: 0 15px 15px 0;
+}
+
+.game-control h2{
+	margin-bottom: 15px;
+}
+
+.player-name{
+	color: #f07167;
+    border-top: 1px dashed #f07167;
+    border-bottom: 1px dashed #f07167;
+    padding: 5px 0;
+    margin-bottom: 15px;
+}
+
+.btn{
+	background: #f07167;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    position: relative;
+    transition: all .5s ease;
+}
+
+.btn-quit{
+	padding: 5px 15px;
+    display: inline-block;
+    width: auto;
+    font-size: 16px;
+}
+
+.btn:hover{
+	background: #0081a7;
+}
+
+.btn:active{
+	bottom: -3px;
+}
+
+.hide{
+	display: none;
+}
+
+/*.piano-note:nth-child(2){
+	animation-delay: 2s;
+}
+
+.piano-note:nth-child(3){
+	animation-delay: 4s;
+}
+
+.piano-note:nth-child(4){
+	animation-delay: 6s;
+}*/
+
+.piano-checkbox{display: none;}
+
+@keyframes slide {
+    0% {
+        top: -100px;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        top: 110%;
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes rotation{
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+
+@media screen and (max-width:  580px){
+	.piano-board{
+		max-width: 85%;
+	}
+}
+
+.game-status{
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.time-elapsed, .percentage, .fail{
+	background: #fed9b7;
+    padding: 10px;
+    border-radius: 0 18px 18px 0;
+    font-size: 20px;
+    margin: 15px 0;
+    color: #0081a7;
+}
